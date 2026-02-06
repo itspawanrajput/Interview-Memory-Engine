@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Memory Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Interview Memory Engine</h1>
+      <p class="subtitle">Personalized data engineering interview prep hub.</p>
+
+      <section class="card">
+        <h2>Add Transcript</h2>
+        <form id="transcript-form">
+          <label>Title <input type="text" name="title" placeholder="Onsite - Company X" /></label>
+          <label>Transcript text <textarea name="transcript_text" rows="6" placeholder="Paste transcript here"></textarea></label>
+          <label>Audio recording (optional) <input type="file" name="recording" /></label>
+          <button type="submit">Save Transcript</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Transcripts</h2>
+        <div id="transcripts"></div>
+      </section>
+
+      <section class="card">
+        <h2>Add Manual Question</h2>
+        <form id="question-form">
+          <label>Question <input name="question_text" type="text" required /></label>
+          <label>Category <input name="category" type="text" placeholder="SQL" /></label>
+          <label>Tags (comma-separated) <input name="tags" type="text" placeholder="joins,window-functions" /></label>
+          <label>
+            Difficulty
+            <select name="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </label>
+          <button type="submit">Save Question</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Question Bank</h2>
+        <div id="questions"></div>
+      </section>
+
+      <section class="card">
+        <h2>Quiz Mode</h2>
+        <div class="row">
+          <button id="start-quiz">Generate Quiz</button>
+          <button id="submit-quiz" disabled>Submit Score</button>
+        </div>
+        <div id="quiz"></div>
+      </section>
+
+      <section class="card">
+        <h2>Progress Analytics</h2>
+        <button id="refresh-analytics">Refresh Analytics</button>
+        <pre id="analytics"></pre>
+      </section>
+
+      <p class="footnote">
+        AI analysis status:
+        <strong>{{ 'Enabled' if ai_enabled else 'Disabled (set OPENAI_API_KEY)' }}</strong>
+      </p>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
